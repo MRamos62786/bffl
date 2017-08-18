@@ -1,0 +1,27 @@
+<div *ngIf="array.enabled">
+    <div *ngFor="let ctrl of array.controls; let i = index">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+                <clr-icon shape="remove" size="16" (click)="removeCtrl(i)"></clr-icon>
+            </div>
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+                <label *ngIf="array.enabled; else valueView" class="tooltip tooltip-validation tooltip-md tooltip-top-left form-control"
+                    [class.invalid]="ctrlInvalid(ctrl)">
+                    <resource-select-component class="form-control" *ngIf="!textarea && resourceSelectUrl" #input [url]="resourceSelectUrl" [hideLabel]="true" [formControl]="ctrl"></resource-select-component>
+                    <input class="form-control" *ngIf="!textarea && !resourceSelectUrl" #input size="25" type="text" [formControl]="ctrl" [focus]="focusEventEmitters.get(ctrl)" />
+                    <textarea class="form-control" *ngIf="textarea" #input [formControl]="ctrl" cols="80" rows="20" [focus]="focusEventEmitters.get(ctrl)"></textarea>
+                    <span class="tooltip-content">Invalid...</span>
+                </label>
+            </div>
+        </div>
+        <ng-template #valueView>{{ctrl.value}}</ng-template>
+    </div>
+    <div *ngIf="array.enabled">
+        <clr-icon shape="plus-circle" size="16" (click)="addCtrl()"></clr-icon>
+    </div>
+</div>
+<div *ngIf="!array.enabled">
+    <div *ngFor="let ctrl of array.controls; let i = index">
+        {{ctrl.value}}
+    </div>
+</div>
