@@ -20,9 +20,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-@angular/core@4.3.5 MIT
-
 clarity-angular@0.10.1 MIT
+
+@angular/core@4.3.5 MIT
 
 @angular/router@4.3.5 MIT
 
