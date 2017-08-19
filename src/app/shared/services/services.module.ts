@@ -4,10 +4,12 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { CanDeactivateGuard } from './can-deactivate-guard.service';
 import { LoggingService } from './logging.service';
+import { TeamsService } from './teams.service';
 
 const PROVIDERS = [
     CanDeactivateGuard,
-    LoggingService
+    LoggingService,
+    TeamsService
 ];
 
 @NgModule({

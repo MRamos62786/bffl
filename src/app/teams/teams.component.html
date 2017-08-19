@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-lg-5 col-md-8 col-sm-12 col-xs-12" *ngFor="let team of teamSvc.getTeams(true)">
+        <div class="card">
+            <div class="card-header">
+                {{team.name}}
+            </div>
+            <div class="card-block">
+                <div class="card-title">
+                    {{team.owner}}
+                </div>
+                <div class="card-text">
+                    {{team.email}}<br />{{team.mobile}}
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-sm btn-link">Footer Action 1</button>
+                <button class="btn btn-sm btn-link">Footer Action 2</button>
+            </div>
+        </div>
+    </div>
+</div>

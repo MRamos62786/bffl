@@ -16,6 +16,10 @@ const appRoutes: Routes = [
         loadChildren: 'app/rulebook/rulebook.module#RulebookModule',
     },
     {
+        path: 'teams',
+        loadChildren: 'app/teams/teams.module#TeamsModule',
+    },
+    {
         path: '',
         redirectTo: '/home',
         pathMatch: 'full'

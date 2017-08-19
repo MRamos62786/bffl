@@ -30,7 +30,6 @@ export class FormArrayEditorComponent implements AfterViewChecked {
 
     @Input() array: FormArray;
     @Input() textarea?: boolean;
-    @Input() resourceSelectUrl?: boolean;
     @Input() add?: () => FormControl;
 
     private focus: EventEmitter<void>;

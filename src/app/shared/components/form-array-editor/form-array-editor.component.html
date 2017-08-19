@@ -7,8 +7,7 @@
             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
                 <label *ngIf="array.enabled; else valueView" class="tooltip tooltip-validation tooltip-md tooltip-top-left form-control"
                     [class.invalid]="ctrlInvalid(ctrl)">
-                    <resource-select-component class="form-control" *ngIf="!textarea && resourceSelectUrl" #input [url]="resourceSelectUrl" [hideLabel]="true" [formControl]="ctrl"></resource-select-component>
-                    <input class="form-control" *ngIf="!textarea && !resourceSelectUrl" #input size="25" type="text" [formControl]="ctrl" [focus]="focusEventEmitters.get(ctrl)" />
+                    <input class="form-control" *ngIf="!textarea" #input size="25" type="text" [formControl]="ctrl" [focus]="focusEventEmitters.get(ctrl)" />
                     <textarea class="form-control" *ngIf="textarea" #input [formControl]="ctrl" cols="80" rows="20" [focus]="focusEventEmitters.get(ctrl)"></textarea>
                     <span class="tooltip-content">Invalid...</span>
                 </label>
