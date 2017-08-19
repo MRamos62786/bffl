@@ -7,8 +7,17 @@ import { TeamsComponent } from './teams.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'all-time',
     component: TeamsComponent
+  },
+  {
+    path: 'year/:year',
+    component: TeamsComponent,
+  },
+  {
+    path: '',
+    redirectTo: 'all-time',
+    pathMatch: 'full'
   }
 ];
 

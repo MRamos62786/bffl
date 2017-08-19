@@ -1,15 +1,26 @@
-<div class="row">
+<clr-dropdown>
+    <button type="button" class="btn btn-sm btn-outline-primary" clrDropdownTrigger>
+        {{current_year || 'All Time'}}
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+        <label class="dropdown-header">Select Year</label>
+        <button type="button" [routerLink]="'/teams/all-time'" clrDropdownItem>All Time</button>
+        <button type="button" *ngFor="let year of [2016,2015,2014,2013,2012,2011,2010]" [routerLink]="'/teams/year/' + year" clrDropdownItem>{{year}}</button>
+    </clr-dropdown-menu>
+</clr-dropdown>
+<div class="row" *ngIf="!current_year">
     <div class="col-lg-5 col-md-8 col-sm-12 col-xs-12" *ngFor="let team of teamSvc.getTeams(true)">
         <div class="card">
             <div class="card-header">
-                {{team.name}}
+                {{team.name}} ({{team.allTimeStats.wins}}-{{team.allTimeStats.losses}}-{{team.allTimeStats.ties}})
             </div>
             <div class="card-block">
                 <div class="card-title">
                     {{team.owner}}
                 </div>
                 <div class="card-text">
-                    {{team.email}}<br />{{team.mobile}}
+                    {{team.email}}<br /><a [href]="'tel:+1-' + team.mobile">{{team.mobile}}</a>
                 </div>
             </div>
             <div class="card-footer">
@@ -18,4 +29,107 @@
             </div>
         </div>
     </div>
+</div>
+<div class="row" *ngIf="current_year">
+    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" *ngFor="let team of getTeamByYear()">
+        <div class="card">
+            <div class="card-block row">
+                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                    <div class="card-title">
+                        {{team.owner}}
+                    </div>
+                    <div class="card-text">
+                        {{team.stats[current_year].wins}}-{{team.stats[current_year].losses}}-{{team.stats[current_year].ties}}
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <clr-icon *ngIf="team.stats[current_year].standing === 'champ'" size="48" shape="bffl-trophy"></clr-icon>
+                    <clr-icon *ngIf="team.stats[current_year].standing === 'second'" size="48" shape="bffl-second"></clr-icon>
+                    <clr-icon *ngIf="team.stats[current_year].standing === 'third'" size="48" shape="bffl-third"></clr-icon>
+                    <clr-icon *ngIf="team.stats[current_year].standing === 'wreck'" size="48" shape="bffl-wreck"></clr-icon>
+                </div>
+            </div>
+        </div>
+    </div>
+    Note
+    <clr-icon shape="view-columns"></clr-icon> icon below to show more stats.
+    <clr-datagrid>
+        <clr-dg-column>Owner</clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.wins'">
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+                Wins
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.losses'">
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+                Losses
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.ties'">
+            <ng-container *clrDgHideableColumn="{hidden: false}">
+                Ties
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.pointsFor'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                PF
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.pointsAgainst'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                PA
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.pointsForPerGame'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                PF/G
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.pointsAgainstPerGame'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                PA/G
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.winPercentage'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                Win %
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.playoffWins'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                Playoff Wins
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.playoffLosses'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                Playoff Losses
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.playoffWinPercentage'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                Playoff Win %
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-column [clrDgField]="'stats.' + current_year + '.moneyDiff'">
+            <ng-container *clrDgHideableColumn="{hidden: true}">
+                Money
+            </ng-container>
+        </clr-dg-column>
+        <clr-dg-row *clrDgItems="let team of teamSvc.getTeamsForYear(current_year)">
+            <clr-dg-cell>{{team.owner}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].wins}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].losses}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].ties}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].pointsFor}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].pointsAgainst}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].pointsForPerGame | number : '1.2-2'}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].pointsAgainstPerGame | number : '1.2-2'}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].winPercentage | number : '1.2-2'}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].playoffWins}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].playoffLosses}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].playoffWinPercentage | number : '1.2-2'}}</clr-dg-cell>
+            <clr-dg-cell>{{team.stats[current_year].moneyDiff}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-footer></clr-dg-footer>
+    </clr-datagrid>
 </div>

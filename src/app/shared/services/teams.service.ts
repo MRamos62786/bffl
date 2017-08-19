@@ -15,6 +15,7 @@ export interface Stats {
     moneyWon: number;
     moneyLost: number;
     moneyDiff?: number;
+    standing?: 'champ' | 'second' | 'third' | 'wreck';
 }
 
 export interface Team {
@@ -36,6 +37,10 @@ export class TeamsService {
 
     constructor() {
         this.calculateStats();
+    }
+
+    getTeamsForYear(year: number) {
+        return teams.filter(team => team.stats[year]);
     }
 
     getTeams(activeOnly?: boolean) {
@@ -72,6 +77,7 @@ export class TeamsService {
                         team.allTimeStats[stat] += yearStats[stat];
                     }
                 }
+                /* tslint:enable:forin */
 
                 this.performStatCalcs(team.allTimeStats);
             });
@@ -104,6 +110,17 @@ const teams: Team[] = [
         mobile: '508-965-4027',
         email: 'joedebarros1@yahoo.com',
         stats: {
+            2016: {
+                pointsFor: 1529,
+                pointsAgainst: 1435,
+                wins: 7,
+                losses: 6,
+                ties: 0,
+                playoffWins: 0,
+                playoffLosses: 0,
+                moneyWon: 0,
+                moneyLost: 50
+            },
             2015: {
                 pointsFor: 1306,
                 pointsAgainst: 1533,
@@ -146,7 +163,8 @@ const teams: Team[] = [
                 playoffWins: 3,
                 playoffLosses: 0,
                 moneyWon: 160,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'champ'
             },
             2011: {
                 pointsFor: 1413,
@@ -173,7 +191,7 @@ const teams: Team[] = [
         }
     },
     {
-        name: 'WINTER SUPER SOLDIERS',
+        name: 'SUPER UNKNOWNS',
         active: true,
         logo: 'http://i830.photobucket.com/albums/zz224/bragaffl/WSSoldiersSMALL_zpszsisnqqf.jpg',
         nsfwLogo: false,
@@ -181,6 +199,17 @@ const teams: Team[] = [
         mobile: '508-642-5661',
         email: 't_correia@hotmail.com',
         stats: {
+            2016: {
+                pointsFor: 1478,
+                pointsAgainst: 1643,
+                wins: 4,
+                losses: 9,
+                ties: 0,
+                playoffWins: 0,
+                playoffLosses: 0,
+                moneyWon: 0,
+                moneyLost: 50
+            },
             2015: {
                 pointsFor: 1481,
                 pointsAgainst: 1511,
@@ -190,7 +219,8 @@ const teams: Team[] = [
                 playoffWins: 0,
                 playoffLosses: 0,
                 moneyWon: 50,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'wreck'
             },
             2014: {
                 pointsFor: 1498,
@@ -201,7 +231,8 @@ const teams: Team[] = [
                 playoffWins: 0,
                 playoffLosses: 0,
                 moneyWon: 50,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'wreck'
             },
             2013: {
                 pointsFor: 1813,
@@ -223,7 +254,8 @@ const teams: Team[] = [
                 playoffWins: 0,
                 playoffLosses: 1,
                 moneyWon: 60,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'third'
             },
             2011: {
                 pointsFor: 1647,
@@ -234,7 +266,8 @@ const teams: Team[] = [
                 playoffWins: 0,
                 playoffLosses: 0,
                 moneyWon: 30,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'wreck'
             },
             2010: {
                 pointsFor: 1328,
@@ -258,6 +291,17 @@ const teams: Team[] = [
         mobile: '774-319-9111',
         email: 'mramos62786@gmail.com',
         stats: {
+            2016: {
+                pointsFor: 1545,
+                pointsAgainst: 1485,
+                wins: 7,
+                losses: 6,
+                ties: 0,
+                playoffWins: 0,
+                playoffLosses: 0,
+                moneyWon: 0,
+                moneyLost: 50
+            },
             2015: {
                 pointsFor: 1422,
                 pointsAgainst: 1816,
@@ -335,6 +379,17 @@ const teams: Team[] = [
         mobile: '508-496-9644',
         email: 'jimmorton52@gmail.com',
         stats: {
+            2016: {
+                pointsFor: 1466,
+                pointsAgainst: 1326,
+                wins: 8,
+                losses: 5,
+                ties: 0,
+                playoffWins: 0,
+                playoffLosses: 1,
+                moneyWon: 0,
+                moneyLost: 50
+            },
             2015: {
                 pointsFor: 1633,
                 pointsAgainst: 1562,
@@ -355,7 +410,8 @@ const teams: Team[] = [
                 playoffWins: 1,
                 playoffLosses: 1,
                 moneyWon: 100,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'third'
             },
             2013: {
                 pointsFor: 1678,
@@ -366,7 +422,8 @@ const teams: Team[] = [
                 playoffWins: 3,
                 playoffLosses: 0,
                 moneyWon: 250,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'champ'
             },
             2012: {
                 pointsFor: 1649,
@@ -377,7 +434,8 @@ const teams: Team[] = [
                 playoffWins: 2,
                 playoffLosses: 1,
                 moneyWon: 100,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'second'
             },
             2011: {
                 pointsFor: 1292,
@@ -412,6 +470,18 @@ const teams: Team[] = [
         mobile: '508-415-9397',
         email: 'ronnr77@gmail.com',
         stats: {
+            2016: {
+                pointsFor: 1697,
+                pointsAgainst: 1579,
+                wins: 9,
+                losses: 3,
+                ties: 1,
+                playoffWins: 2,
+                playoffLosses: 0,
+                moneyWon: 250,
+                moneyLost: 50,
+                standing: 'champ'
+            },
             2015: {
                 pointsFor: 1341,
                 pointsAgainst: 1620,
@@ -443,7 +513,8 @@ const teams: Team[] = [
                 playoffWins: 0,
                 playoffLosses: 0,
                 moneyWon: 50,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'wreck'
             },
             2012: {
                 pointsFor: 1709,
@@ -465,7 +536,8 @@ const teams: Team[] = [
                 playoffWins: 1,
                 playoffLosses: 1,
                 moneyWon: 100,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'second'
             },
             2010: {
                 pointsFor: 1287,
@@ -481,7 +553,7 @@ const teams: Team[] = [
         }
     },
     {
-        name: 'STRAIGHT OFFA WAIVERS',
+        name: 'TERCEIRA TOURADAS',
         active: true,
         logo: 'http://i159.photobucket.com/albums/t127/SteveO_82/ab149dbb-5b90-47f7-8a9d-fb05e398f4cc_zpscvuwjukf.jpg',
         nsfwLogo: false,
@@ -489,6 +561,17 @@ const teams: Team[] = [
         mobile: '508-423-2503',
         email: 'steveoc82@aol.com',
         stats: {
+            2016: {
+                pointsFor: 1577,
+                pointsAgainst: 1542,
+                wins: 5,
+                losses: 8,
+                ties: 0,
+                playoffWins: 1,
+                playoffLosses: 1,
+                moneyWon: 0,
+                moneyLost: 50
+            },
             2015: {
                 pointsFor: 1584,
                 pointsAgainst: 1408,
@@ -542,7 +625,8 @@ const teams: Team[] = [
                 playoffWins: 1,
                 playoffLosses: 1,
                 moneyWon: 60,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'third'
             },
             2010: {
                 pointsFor: 1233,
@@ -553,7 +637,8 @@ const teams: Team[] = [
                 playoffWins: 0,
                 playoffLosses: 0,
                 moneyWon: 30,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'wreck'
             }
         }
     },
@@ -566,6 +651,18 @@ const teams: Team[] = [
         mobile: '508-965-6525',
         email: 'fernando.deoliveira@engineer.com',
         stats: {
+            2016: {
+                pointsFor: 1686,
+                pointsAgainst: 1651,
+                wins: 8,
+                losses: 5,
+                ties: 0,
+                playoffWins: 2,
+                playoffLosses: 1,
+                moneyWon: 190,
+                moneyLost: 50,
+                standing: 'second'
+            },
             2015: {
                 pointsFor: 1673,
                 pointsAgainst: 1516,
@@ -575,7 +672,8 @@ const teams: Team[] = [
                 playoffWins: 2,
                 playoffLosses: 1,
                 moneyWon: 190,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'second'
             },
             2014: {
                 pointsFor: 1510,
@@ -586,7 +684,8 @@ const teams: Team[] = [
                 playoffWins: 2,
                 playoffLosses: 0,
                 moneyWon: 250,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'champ'
             },
             2013: {
                 pointsFor: 1491,
@@ -602,14 +701,25 @@ const teams: Team[] = [
         }
     },
     {
-        name: 'MAPLE SYRUP',
+        name: 'CUECAS CUECAS',
         active: true,
-        logo: 'http://i830.photobucket.com/albums/zz224/bragaffl/MapleSyrup_zpsdd4f037f.jpg',
+        logo: 'http://g.espncdn.com/s/ffllm/logos/HelmetAlphabet-ESPN/Helmet-C.svg',
         nsfwLogo: false,
         owner: 'Garrett Springhetti',
         mobile: '774-392-0886',
         email: 'gspringh@gmail.com',
         stats: {
+            2016: {
+                pointsFor: 1403,
+                pointsAgainst: 1555,
+                wins: 3,
+                losses: 9,
+                ties: 1,
+                playoffWins: 0,
+                playoffLosses: 0,
+                moneyWon: 0,
+                moneyLost: 50
+            },
             2015: {
                 pointsFor: 1646,
                 pointsAgainst: 1426,
@@ -654,6 +764,17 @@ const teams: Team[] = [
         mobile: '774-451-2108',
         email: 'mdzm34@comcast.net',
         stats: {
+            2016: {
+                pointsFor: 1593,
+                pointsAgainst: 1674,
+                wins: 7,
+                losses: 6,
+                ties: 0,
+                playoffWins: 0,
+                playoffLosses: 1,
+                moneyWon: 0,
+                moneyLost: 50
+            },
             2015: {
                 pointsFor: 1609,
                 pointsAgainst: 1298,
@@ -663,7 +784,8 @@ const teams: Team[] = [
                 playoffWins: 3,
                 playoffLosses: 0,
                 moneyWon: 250,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'champ'
             },
             2014: {
                 pointsFor: 1365,
@@ -718,13 +840,14 @@ const teams: Team[] = [
                 playoffWins: 1,
                 playoffLosses: 1,
                 moneyWon: 60,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'third'
             }
         }
     },
     {
         name: 'CHECK MY BALLS',
-        active: true,
+        active: false,
         logo: 'http://img.gawkerassets.com/img/18ha55yjdnorkjpg/k-bigpic.jpg',
         nsfwLogo: true,
         owner: 'Marc Miller',
@@ -749,10 +872,22 @@ const teams: Team[] = [
         active: true,
         logo: 'http://g.espncdn.com/s/ffllm/logos/Marvel-75thAnnivSuperHeroIcons/GhostRider-01.svg',
         nsfwLogo: false,
-        owner: 'Carols Novo',
+        owner: 'Carlos Novo',
         mobile: '508-558-3410',
         email: 'carlosnovo37@yahoo.com',
         stats: {
+            2016: {
+                pointsFor: 1365,
+                pointsAgainst: 1477,
+                wins: 4,
+                losses: 9,
+                ties: 0,
+                playoffWins: 0,
+                playoffLosses: 0,
+                moneyWon: 50,
+                moneyLost: 50,
+                standing: 'wreck'
+            },
             2015: {
                 pointsFor: 1578,
                 pointsAgainst: 1617,
@@ -784,7 +919,8 @@ const teams: Team[] = [
                 playoffWins: 2,
                 playoffLosses: 1,
                 moneyWon: 190,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'second'
             },
             2012: {
                 pointsFor: 1385,
@@ -817,7 +953,8 @@ const teams: Team[] = [
                 playoffWins: 2,
                 playoffLosses: 0,
                 moneyWon: 160,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'champ'
             }
         }
     },
@@ -830,6 +967,17 @@ const teams: Team[] = [
         mobile: '774-365-7937',
         email: 'jg0181@yahoo.com',
         stats: {
+            2016: {
+                pointsFor: 1513,
+                pointsAgainst: 1644,
+                wins: 5,
+                losses: 7,
+                ties: 1,
+                playoffWins: 0,
+                playoffLosses: 0,
+                moneyWon: 0,
+                moneyLost: 50
+            },
             2015: {
                 pointsFor: 1789,
                 pointsAgainst: 1608,
@@ -839,7 +987,8 @@ const teams: Team[] = [
                 playoffWins: 0,
                 playoffLosses: 1,
                 moneyWon: 95,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'third'
             },
             2014: {
                 pointsFor: 1580,
@@ -850,7 +999,8 @@ const teams: Team[] = [
                 playoffWins: 1,
                 playoffLosses: 1,
                 moneyWon: 190,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'second'
             },
             2013: {
                 pointsFor: 1564,
@@ -883,7 +1033,8 @@ const teams: Team[] = [
                 playoffWins: 2,
                 playoffLosses: 0,
                 moneyWon: 160,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'champ'
             },
             2010: {
                 pointsFor: 1510,
@@ -995,7 +1146,8 @@ const teams: Team[] = [
                 playoffWins: 0,
                 playoffLosses: 1,
                 moneyWon: 100,
-                moneyLost: 50
+                moneyLost: 50,
+                standing: 'third'
             },
             2012: {
                 pointsFor: 1388,
@@ -1028,8 +1180,30 @@ const teams: Team[] = [
                 playoffWins: 2,
                 playoffLosses: 1,
                 moneyWon: 100,
-                moneyLost: 30
+                moneyLost: 30,
+                standing: 'second'
             }
         }
-    }
+    },
+    {
+        name: 'TyChNacaL DIFFICULTIES',
+        owner: 'Pete Lantz',
+        active: true,
+        mobile: 'dunno',
+        email: 'dunno',
+        stats: {
+            2016: {
+                pointsFor: 1598,
+                pointsAgainst: 1439,
+                wins: 9,
+                losses: 3,
+                ties: 1,
+                playoffWins: 0,
+                playoffLosses: 1,
+                moneyWon: 95,
+                moneyLost: 50,
+                standing: 'third'
+            }
+        }
+    },
 ];

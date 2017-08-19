@@ -1,7 +1,23 @@
-<!-- <p>
-  rulebook works! -->
-  <!-- <pdf-viewer [src]="'2017rulebook.pdf'" [page]="1" [original-size]="true" style="display: block;">
-
-  </pdf-viewer> -->
-  <iframe src="https://drive.google.com/file/d/0B-olz8zrBWq_aFBHOEhyeTJLbkU/preview" width="100%" height="100%"></iframe>
-<!-- </p> -->
+<clr-dropdown>
+    <button type="button" class="btn btn-sm btn-outline-primary" clrDropdownTrigger>
+        {{current_year}}
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+        <label class="dropdown-header">Select Year</label>
+        <button type="button" *ngFor="let year of [2017,2016,2015,2014,2013,2012,2011,2010]" [routerLink]="'/rulebook/year/' + year"
+            clrDropdownItem>{{year}}</button>
+    </clr-dropdown-menu>
+</clr-dropdown>
+<div [ngSwitch]="current_year" style="display: inherit" #pdfDiv>
+    <iframe *ngSwitchCase="2017" src="https://drive.google.com/file/d/0B-olz8zrBWq_LTFvSVEteXBOVFk/preview" width="100%" height="90%"></iframe>
+    <iframe *ngSwitchCase="2016" src="https://drive.google.com/file/d/0B-olz8zrBWq_aFBHOEhyeTJLbkU/preview" width="100%" height="90%"></iframe>
+    <iframe *ngSwitchCase="2015" src="https://drive.google.com/file/d/0B-olz8zrBWq_Wm5vRGd2YUs4MkU/preview" width="100%" height="90%"></iframe>
+    <iframe *ngSwitchCase="2014" src="https://drive.google.com/file/d/0B-olz8zrBWq_emlVWklKbENTdlR6NXEyQ1ZJTjhrU3hNYldn/preview"
+        width="100%" height="90%"></iframe>
+    <iframe *ngSwitchCase="2013" src="https://drive.google.com/file/d/0B-olz8zrBWq_aGI3Yml6TjBFLWc/preview" width="100%" height="90%"></iframe>
+    <iframe *ngSwitchCase="2012" src="https://drive.google.com/file/d/0B-olz8zrBWq_VjJES1dfelE3Ylk/preview" width="100%" height="90%"></iframe>
+    <iframe *ngSwitchCase="2011" src="https://drive.google.com/file/d/0B-olz8zrBWq_ZmY1NzdXRGZta3M/preview" width="100%" height="90%"></iframe>
+    <iframe *ngSwitchCase="2010" src="https://drive.google.com/file/d/0B-olz8zrBWq_bnI3SUNJQTZoQ1E/preview" width="100%" height="90%"></iframe>
+    <ng-template ngSwitchDefault>Come on man...why you trying to break stuff?</ng-template>
+</div>
