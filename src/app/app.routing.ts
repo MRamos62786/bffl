@@ -20,6 +20,10 @@ const appRoutes: Routes = [
         loadChildren: 'app/teams/teams.module#TeamsModule',
     },
     {
+        path: 'stats',
+        loadChildren: 'app/stats/stats.module#StatsModule',
+    },
+    {
         path: '',
         redirectTo: '/home',
         pathMatch: 'full'

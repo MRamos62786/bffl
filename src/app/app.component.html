@@ -3,11 +3,15 @@
     <clr-header class="header-5">
         <div class="branding">
             <a routerLink="/home" routerLinkActive="active" class="nav-link">
-                <clr-icon shape="vm-bug"></clr-icon>
+                <clr-icon shape="bffl-football" class="is-solid"></clr-icon>
                 <span class="title">BFFL</span>
             </a>
         </div>
         <div class="header-nav">
+            <a href="http://games.espn.com/ffl/leagueoffice?leagueId=5406&seasonId=2017" class="nav-link"><span class="nav-text">ESPN</span></a>
+            <!-- <a href="..." class="nav-link"><span class="nav-text">Interactive Analytics</span></a> -->
+        </div>
+        <!-- <div class="header-nav">
             <a (click)="nothing()" class="nav-link nav-icon">
                 <clr-icon shape="bolt"></clr-icon>
             </a>
@@ -19,13 +23,14 @@
             <a (click)="nothing()" class="nav-link nav-icon">
                 <clr-icon shape="user"></clr-icon>
             </a>
-        </div>
+        </div> -->
     </clr-header>
     <nav class="subnav" [clr-nav-level]="1">
         <ul class="nav">
             <li class="nav-item"><a class="nav-link" routerLink="/home" routerLinkActive="active">Home</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/rulebook" routerLinkActive="active">Rulebook</a></li>
             <li class="nav-item"><a class="nav-link" routerLink="/teams" routerLinkActive="active">Teams</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/stats" routerLinkActive="active">Stats</a></li>
         </ul>
     </nav>
     <!-- <nav class="subnav">

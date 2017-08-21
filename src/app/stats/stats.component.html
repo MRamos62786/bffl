@@ -1,0 +1,91 @@
+<clr-dropdown>
+    <button type="button" class="btn btn-sm btn-outline-primary" clrDropdownTrigger>
+        {{current_year === 'all-time' ? 'All Time' : current_year}}
+        <clr-icon shape="caret down"></clr-icon>
+    </button>
+    <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
+        <label class="dropdown-header">Select Year</label>
+        <button type="button" [routerLink]="'/stats/year/all-time'" clrDropdownItem>All Time</button>
+        <button type="button" *ngFor="let year of [2016,2015,2014,2013,2012,2011,2010]" [routerLink]="'/stats/year/' + year" clrDropdownItem>{{year}}</button>
+    </clr-dropdown-menu>
+</clr-dropdown>
+<clr-icon shape="view-columns"></clr-icon> Note icon below to show more stats.
+<clr-datagrid *ngIf=!hideGrid>
+    <clr-dg-column>Owner</clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('wins')">
+        <ng-container *clrDgHideableColumn="{hidden: false}">
+            Wins
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('losses')">
+        <ng-container *clrDgHideableColumn="{hidden: false}">
+            Losses
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('ties')">
+        <ng-container *clrDgHideableColumn="{hidden: false}">
+            Ties
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('pointsFor')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            PF
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('pointsAgainst')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            PA
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('pointsForPerGame')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            PF/G
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('pointsAgainstPerGame')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            PA/G
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('winPercentage')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            Win %
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('playoffWins')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            Playoff Wins
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('playoffLosses')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            Playoff Losses
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('playoffWinPercentage')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            Playoff Win %
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-column [clrDgField]="getField('moneyDiff')">
+        <ng-container *clrDgHideableColumn="{hidden: true}">
+            Money
+        </ng-container>
+    </clr-dg-column>
+    <clr-dg-row *clrDgItems="let team of getTeams()">
+        <clr-dg-cell>{{team.owner}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'wins')}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'losses')}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'ties')}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'pointsFor')}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'pointsAgainst')}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'pointsForPerGame') | number : '1.2-2'}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'pointsAgainstPerGame') | number : '1.2-2'}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'winPercentage') | number : '1.2-2'}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'playoffWins')}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'playoffLosses')}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'playoffWinPercentage') | number : '1.2-2'}}</clr-dg-cell>
+        <clr-dg-cell>{{getValue(team,'moneyDiff')}}</clr-dg-cell>
+    </clr-dg-row>
+    <clr-dg-footer></clr-dg-footer>
+</clr-datagrid>

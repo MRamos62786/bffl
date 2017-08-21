@@ -3,27 +3,23 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ClarityModule } from 'clarity-angular';
 
-import { TeamsComponent } from './teams.component';
+import { StatsComponent } from './stats.component';
 
 const routes: Routes = [
   {
-    path: 'current',
-    component: TeamsComponent
-  },
-  {
     path: 'year/:year',
-    component: TeamsComponent,
+    component: StatsComponent,
   },
   {
     path: '',
-    redirectTo: 'current',
+    redirectTo: 'year/all-time',
     pathMatch: 'full'
   }
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes), ClarityModule],
-  declarations: [TeamsComponent],
-  exports: [RouterModule, TeamsComponent]
+  declarations: [StatsComponent],
+  exports: [RouterModule, StatsComponent]
 })
-export class TeamsRoutingModule { }
+export class StatsRoutingModule { }
